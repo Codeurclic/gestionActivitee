@@ -47,29 +47,24 @@
 		</div>
 	
 	<div class="row">
-		<div class="span5 bordure1"> 
-		
+		<div class="span5 bordure1 alert alert-info"> 
 			<h3>
 				Statistiques <em>Adhérents</em>
-			</h3>
-			<ul>
-				<li> Nombre d'adhérents : <?php echo $nombre_adherents ;?></li>
-				<li> Moyenne d'age des adhérents : <?php echo (int)$moyenne_age ; ?></li>
-			</ul>
-			<p>
-				<a class="btn" href="#">Voir détails»</a>
-			</p>
+			</h3>				
+			<div class="progress progress-striped active">
+	    		<div class="bar" style="width: 100%;">Nombre d'adhérents : <?php echo $nombre_adherents ;?></div>
+	    	</div>		
+			<div class="progress progress-striped active">
+	    		<div class="bar" style="width: 100%;">Moyenne d'age des adhérents : <?php echo (int)$moyenne_age ; ?></div>
+	    	</div>		
 		</div>
-		<div class="span5 bordure1">
+		<div class="span5 bordure1 alert alert-info">
 			<h3>
 				Statistiques <em>Projets</em>
 			</h3>
-			<ul>
-				<li> Nombre de projets : <?php echo $nombre_projet ; ?></li>
-			</ul>
-			<p>
-				<a class="btn" href="#">Voir détails »</a>
-			</p>
+			<div class="progress progress-striped active">
+	    		<div class="bar" style="width: 100%;">Nombre de projets : <?php echo $nombre_projet ; ?></div>
+	    	</div>
 		</div>
 	</div>
 </div>
