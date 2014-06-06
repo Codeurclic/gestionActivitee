@@ -3,10 +3,62 @@
 class Animateur extends CI_Controller {
 	
 	public function index() {
+		if(!$this->estConnecte()) {
+			// Page de connexion
+			$data['errors'] = array() ;
+			$data['titre_page'] = "Page de connexion" ;
+			
+			
+			$this->load->library("form_validation") ;
+			// Les règles
+			$this->form_validation->set_rules('mail', '"L\'email"', 'valid_email|trim|required|xss_clean') ;
+			$this->form_validation->set_rules('mdp', '"Le mot de passe"', 'trim|required|xss_clean|md5');
+			
+			// Message d'erreurs
+			$this->form_validation->set_message('valid_email', 'L\'adresse mail est invalide') ;
+			$this->form_validation->set_message('required', '%s est requis') ;
+			
+			// Règles ok
+			if($this->form_validation->run()) {
+					
+				$mail = $this->input->post('mail') ;
+				$mdp = $this->input->post('mdp') ;
+					
+				// récupérer l'utilisateur ayant le mail entré
+				$this->load->model('animateur_model', 'animateurMod') ;
+				$result = $this->animateurMod->getAnimateurByMail($mail) ;
+				
+				if(!empty($result))
+					if($result[0]->mdp == $mdp) { // L'utilisateur est connecté
+							
+						// On initialise les variables de session de l'utilisateur connecté
+						$this->session->set_userdata('connected', '1');
+						$this->session->set_userdata('idanim', $result['0']->id) ;
+						$this->session->set_userdata('admin', $result['0']->admin) ;
+						
+						$this->accueil() ;
+					}else {
+						$error = "Vérifiez vos données" ;
+						array_push($data['errors'], $error) ;
+						$this->afficher("connexion", $data, '', 1) ;
+					}
+				else { 
+					$error = "Vérifiez vos données" ;
+					array_push($data['errors'], $error) ;
+					$this->afficher("connexion", $data, '', 1) ;
+				}
+			}else {
+				$this->afficher("connexion", $data, '', 1) ;
+			}
+		}else
+			$this->accueil() ;
+	}
+	
+	public function accueil() {
 		// Si l'utilisateur est connecté
 		if($this->estConnecte()) {
 			$header['titre_page'] = "Page d'accueil";
-			
+				
 			$this->load->model('adherent_model', 'adherentMod');
 			$data['nombre_adherents'] = $this->adherentMod->getNombre() ;
 			$data['moyenne_age'] = $this->adherentMod->getMoyenneAge()['0']->moyenne_age ;
@@ -15,40 +67,9 @@ class Animateur extends CI_Controller {
 			$data['nombre_projet'] = $this->projetMod->getNombre() ;
 			$this->afficher("accueil", $header, $data);
 			// Bienvenue à la page d'accueil
-		} else {
-			// redirection à la page de connexion
-			$data['titre_page'] = "Page de connexion" ;
-			$this->afficher("connexion", $data, '', 1) ;
 		}
 	}
 	
-	public function connexion() {
-		$this->load->library("form_validation") ;
-		// Les règles
-		$this->form_validation->set_rules('identifiant', '"Nom d\'utilisateur"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('mdp', '"Mot de passe"', 'trim|required|xss_clean');
-		
-		// Règles ok
-		if($this->form_validation->run()) {
-			$identifiant = $this->input->post('identifiant') ;
-			$mdp = md5($this->input->post('mdp')) ;
-			
-			// récupérer l'utilisateur ayant l'identifiant entré
-			$this->load->model('animateur_model', 'animateurMod') ;
-			$result = $this->animateurMod->getAnimateurByIdentifiant($identifiant) ;
-			if($result)
-				if($result[0]->mdp == $mdp) { // L'utilisateur est connecté
-					$this->session->set_userdata('connected', '1');
-					$this->session->set_userdata('idanim', $result['0']->id) ;
-					$this->session->set_userdata('admin', $result['0']->admin) ;
-					$this->index() ;
-				}
-				else // Connexion interrompue
-					redirect() ;
-			else
-				redirect();
-		}
-	}
 	public function deconnexion() {
 		$this->session->sess_destroy() ;
 		redirect() ;
@@ -68,7 +89,6 @@ class Animateur extends CI_Controller {
 		$header['menu3'] = 1;
 		$header['titre_page'] = "Rapports" ;
 		$data['rapports'] = $result ;
-		$header['menu3'] = 1;
 		$this->afficher("rapport", $header, $data);
 	}
 	public function afficher_rapport($id) {
@@ -246,6 +266,10 @@ class Animateur extends CI_Controller {
 	// La fonction qui va s'occuper de générer la vue finale
 	public function afficher($vue, $header = array(), $data = array(), $connexion = 0)
 	{
+		// Check errors variable, if empty, on l'initialise au vide
+		if(empty($data['errors']))
+			$data['errors'] = array() ;
+		 
 		if($connexion == 1)
 			$this->load->view($vue, $header); 
 		else { 

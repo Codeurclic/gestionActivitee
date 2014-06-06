@@ -10,8 +10,8 @@ class Animateur_model extends CI_Model
 	public function getAnimateurs() {
 		return $this->db->select('*')->from($this->table)->get()->result() ;
 	}
-	public function getAnimateurByIdentifiant($identifiant) {
-		return $this->db->select('*')->from($this->table)->where('identifiant', $identifiant)->get()->result() ;
+	public function getAnimateurByMail($mail) {
+		return $this->db->select('*')->from($this->table)->where('mail', $mail)->get()->result() ;
 	}
 	public function ajouterAnimateur($identifiant, $mdp, $nom, $prenom, $age, $mail, $tel, $admin, $temps) {
 		return $this->db->set('id', '')->set('mdp', $mdp)->set('nom', $nom)->set('prenom', $prenom)->set('age', $age)->set('mail', $mail)->set('tel', $tel)->set('inscris', $temps)->set('admin', $admin)->set('identifiant', $identifiant)->insert($this->table);

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<!-- General meta information -->
-	<title>AJST</title>
+	<title><?php echo $titre_page ;?></title>
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta name="robots" content="index, follow" />
@@ -31,17 +31,22 @@
 <body>
 
 	<div id="wrapper">
+		<div class="error" style="font-weight:bold; color:black"><?php echo validation_errors()?></div>
+		<div class="error" style="font-weight:bold; color:black">
+		<?php foreach($errors as $error) {
+			echo $error."<br/>" ; 
+		}?></div>
 		<div id="wrappertop"></div>
 
 		<div id="wrappermiddle">
-			<form action="index.php/animateur/connexion" method="post">
-			<h2>Login</h2>
-
+			
+			<?php echo form_open('animateur'); ?>
+			<h2>Connexion</h2>
 			<div id="username_input">
 				<div id="username_inputleft"></div>
 				<div id="username_inputmiddle">
-					<input type="text" name="identifiant" id="url" value="Identifiant" onclick="this.value = ''">
-					<img id="url_user" src="<?php //echo img_url('mailicon.png');?>" alt="">
+					<input type="text" name="mail" id="url" value="Email" onclick="this.value = ''">
+					<img id="url_user" src="<?php echo img_url('mailicon.png');?>" alt="">
 				</div>
 
 				<div id="username_inputright"></div>
@@ -49,7 +54,7 @@
 				<div id="password_input">
 					<div id="password_inputleft"></div>
 					<div id="password_inputmiddle">
-						<input type="password" name="mdp" id="url" value="Password" onclick="this.value = ''">
+						<input type="password" name="mdp" id="url" value="Mot de passe" onclick="this.value = ''">
 						<img id="url_password" src="<?php echo img_url('passicon.png') ; ?>" alt="">
 					</div>
 	
