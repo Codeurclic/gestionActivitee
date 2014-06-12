@@ -13,8 +13,8 @@ class Adherent_model extends CI_Model
 	public function ajouterAdherent($nom, $prenom, $age, $mail, $tel, $annee_scolaire, $lycee, $temps) {
 		return $this->db->set('id', '')->set('nom', $nom)->set('prenom', $prenom)->set('age', $age)->set('mail', $mail)->set('tel', $tel)->set('annee_scolaire', $annee_scolaire)->set('lycee', $lycee)->set('inscris', $temps)->insert($this->table);
 	}
-	public function modifierAdherent($idadherent, $nom, $prenom, $age, $mail, $tel, $annee_scolaire, $lycee) {
-		return $this->db->set('nom', $nom)->set('prenom', $prenom)->set('age', $age)->set('mail', $mail)->set('tel', $tel)->set('annee_scolaire', $annee_scolaire)->set('lycee', $lycee)->where('id', $idadherent)->update($this->table);
+	public function modifierAdherent($idadherent, $champ, $valeur) {
+		return $this->db->set($champ, $valeur)->where('id', $idadherent)->update($this->table);
 	}
 	public function supprimerAdherent($id) {
 		return $this->db->where('id', $id)->delete($this->table) ;
