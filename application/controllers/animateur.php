@@ -234,27 +234,14 @@ class Animateur extends CI_Controller {
 		}
 	}
 	public function modifier_adherent() {
-		$this->form_validation->set_rules('nom', '"Nom de l\'adherent"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('prenom', '"Prénom de l\'adherent"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('age', '"Age"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('mail', '"Mail"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('tel', '"Tél"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('annee_scolaire', '"Annee scolaire"', 'trim|required|xss_clean') ;
-		$this->form_validation->set_rules('lycee', '"Lycée"', 'trim|required|xss_clean') ;
 		
-		if($this->form_validation->run()) {
-			$nom = $this->input->post('nom') ;
-			$prenom = $this->input->post('prenom') ;
-			$age = $this->input->post('age') ;
-			$mail = $this->input->post('mail') ;
-			$tel = $this->input->post('tel');
-			$annee_scolaire = $this->input->post('annee_scolaire') ;
-			$lycee = $this->input->post('lycee');
-			$idadherent = $this->input->post('idadherent') ;
-			
-			$this->load->model('adherent_model', 'adherentMod');
-			$this->adherentMod->modifierAdherent($idadherent, $nom, $prenom, $age, $mail, $tel, $annee_scolaire, $lycee);
-		}
+		$id = $this->input->post('pk') ;
+		$champ = $this->input->post('name') ;
+		$value = $this->input->post('value') ;
+
+		$this->load->model('adherent_model', 'adherentMod');
+		$this->adherentMod->modifierAdherent($id, $champ, $value);
+		
 	}
 	public function supprimer_adherent($id) {
 		$this->load->model('adherent_model', 'adherentMod');

@@ -19,11 +19,11 @@
 			        <?php foreach ($adherents as $adherent) { ?>
 			          <tr>
 			            <td><?php echo $adherent->id ;?></td>
-			            <td><?php echo $adherent->nom ;?></td>
-			            <td><?php echo $adherent->prenom ;?></td>
-			            <td><?php echo $adherent->mail ;?></td>
-			            <td><?php echo $adherent->age ;?></td>
-			  			<td><?php echo $adherent->lycee ;?></td>
+			            <td><a href="#" class="xedit" id="nom" data-type="text" data-pk="<?php echo $adherent->id ?>" data-url="<?php echo site_url() ;?>/animateur/modifier_adherent" data-title="Modifier le nom"><?php echo $adherent->nom ;?></a></td>
+			            <td><a href="#" class="xedit" id="prenom" data-type="text" data-pk="<?php echo $adherent->id ?>" data-url="<?php echo site_url() ;?>/animateur/modifier_adherent" data-title="Modifier le prénom"><?php echo $adherent->prenom ;?></td>
+			            <td><a href="#" class="xedit" id="mail" data-type="text" data-pk="<?php echo $adherent->id ?>" data-url="<?php echo site_url() ;?>/animateur/modifier_adherent" data-title="Modifier le mail"><?php echo $adherent->mail ;?></td>
+			            <td><a href="#" class="xedit" id="age" data-type="text" data-pk="<?php echo $adherent->id ?>" data-url="<?php echo site_url() ;?>/animateur/modifier_adherent" data-title="Modifier l'age"><?php echo $adherent->age ;?></td>
+			  			<td><a href="#" class="xedit" id="lycee" data-type="text" data-pk="<?php echo $adherent->id ?>" data-url="<?php echo site_url() ;?>/animateur/modifier_adherent" data-title="Modifier le lycée"><?php echo $adherent->lycee ;?></td>
 			  			<td><a href="<?php echo site_url()."/animateur/supprimer_adherent/".$adherent->id ;?>">Supprimer</a></td>
 			          </tr>
 			         <?php } ?>

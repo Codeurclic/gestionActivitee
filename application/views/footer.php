@@ -15,7 +15,9 @@
 		<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 		<!-- Bootstrap -->
 		<script src="<?php echo js_url('bootstrap.min'); ?>"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/js/bootstrap-editable.min.js"></script>
 		
-		<script src="<?php echo js_url('script'); ?>"></script>
+		<script src="<?php echo js_url('scripts'); ?>"></script>
+		
 </body>
 </html>

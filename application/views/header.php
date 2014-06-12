@@ -9,6 +9,9 @@
 		<link rel="stylesheet" href="<?php echo css_url('bootstrap.min'); ?>">
 		<link rel="stylesheet" href="<?php echo css_url('bootstrap-responsive.min'); ?>">
 		
+		<!-- x-editable -->
+		<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+		
 		<link href="<?php echo css_url("style2");?>" rel="stylesheet">
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
