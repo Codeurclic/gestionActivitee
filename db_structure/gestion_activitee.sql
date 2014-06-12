@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 06. Jun 2014 um 02:30
+-- Erstellungszeit: 12. Jun 2014 um 02:23
 -- Server Version: 5.5.37-MariaDB-log
 -- PHP-Version: 5.5.13
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `adherents` (
   `annee_scolaire` int(11) NOT NULL,
   `lycee` varchar(255) NOT NULL,
   `inscris` bigint(20) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `animateurs` (
 --
 
 INSERT INTO `animateurs` (`id`, `mdp`, `mail`, `nom`, `prenom`, `age`, `inscris`, `tel`, `admin`) VALUES
-(14, '6253e1406b64bbe6ba7b00ac0bf81257', 'hssini.ramy@gmail.com', 'hcini', 'ramy', 0, 1380447799, 0, 1);
+(14, '21232f297a57a5a743894a0e4a801fc3', 'admin@admin.com', 'hcini', 'ramy', 0, 1380447799, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ ALTER TABLE `rapports`
 -- AUTO_INCREMENT for table `adherents`
 --
 ALTER TABLE `adherents`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `animateurs`
 --
