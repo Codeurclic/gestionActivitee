@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 12. Jun 2014 um 02:23
+-- Erstellungszeit: 12. Jun 2014 um 02:25
 -- Server Version: 5.5.37-MariaDB-log
 -- PHP-Version: 5.5.13
 
