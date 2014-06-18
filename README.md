@@ -1,8 +1,8 @@
 Gestion d'activité scientifique à l'AJST
 ================
-Application Web codée en utilisant le framework CodeIgniter en M.V.C.
+Application Web codée en utilisant le framework [CodeIgniter](http://ellislab.com/codeigniter/) en M.V.C.
 CodeIgniter est un framework libre écrit en PHP. Il suit le motif de conception MVC et s'inspire du fonctionnement de Ruby on Rails. 
-http://ellislab.com/codeigniter/
+
 
 Remarques :
 ================
